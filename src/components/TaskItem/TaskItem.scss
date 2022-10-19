@@ -1,4 +1,4 @@
-.TaskItem{
+.TaskItem{ 
     .checkIcon{
         font-size:24px;
         color: rgb(2, 176, 2);
@@ -6,4 +6,16 @@
     .deleteIcon{
         color: rgb(193, 2, 2);
     }
+    .completed{
+        background-color: rgb(99, 232, 99);
+    } 
 }
+
+.list{
+    background-color: #333; 
+}
+
+p{
+    color: whitesmoke!important;
+}
+

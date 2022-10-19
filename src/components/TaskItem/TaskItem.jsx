@@ -1,28 +1,27 @@
-import React from "react";
-import {
-    Checkbox,
-    ListItem,
-    ListItemText,
-    IconButton,
-    Tooltip,
-} from "@mui/material";
+import { Checkbox, ListItem, ListItemText, IconButton, Tooltip } from "@mui/material";
 import { MdCheckCircle, MdOutlineCircle, MdDelete } from "react-icons/md";
 import "./TaskItem.scss";
 
-const TaskItem = () => {
+const TaskItem = ({ task, onComplete, onDelete }) => {
+    let { title, isCompleted, date, id } = task;
+    date = date.toLocaleDateString("en-US", {
+        weekday: "long",
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+    });
     return (
         <>
-            <ListItem disablePadding className="TaskItem">
+            <ListItem disablePadding className={`TaskItem ${isCompleted && "completed"}`}>
                 <Checkbox
+                    onChange={() => onComplete(id)}
                     icon={<MdOutlineCircle className="checkIcon" />}
                     checkedIcon={<MdCheckCircle className="checkIcon" />}
                 />
-                <ListItemText
-                    primary="Walk the dog"
-                    secondary="March 29 2022"
-                />
-                <Tooltip title="Remove">
-                    <IconButton>
+                <ListItemText primary={title} secondary={date} />
+
+                <Tooltip title="Remove" arrow>
+                    <IconButton onClick={() => onDelete(id)}>
                         <MdDelete className="deleteIcon" />
                     </IconButton>
                 </Tooltip>
